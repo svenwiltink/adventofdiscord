@@ -1,0 +1,29 @@
+package adventofdiscord
+
+import (
+	"encoding/json"
+	"github.com/stretchr/testify/assert"
+	"testing"
+	"time"
+)
+
+func TestParseStats(t *testing.T)  {
+
+	input := []byte(`{"event":"2019","owner_id":"424369","members":{"424369":{"last_star_ts":"1578082485","global_score":0,"name":"svenwiltink","stars":30,"id":"424369","local_score":306,"completion_day_level":{"17":{"1":{"get_star_ts":"1578082485"}},"15":{"2":{"get_star_ts":"1576620359"},"1":{"get_star_ts":"1576617929"}},"7":{"2":{"get_star_ts":"1575765217"},"1":{"get_star_ts":"1575758865"}},"8":{"1":{"get_star_ts":"1575803987"},"2":{"get_star_ts":"1575806429"}},"3":{"2":{"get_star_ts":"1575413127"},"1":{"get_star_ts":"1575405657"}},"5":{"1":{"get_star_ts":"1575587226"},"2":{"get_star_ts":"1575588084"}},"9":{"1":{"get_star_ts":"1575929124"},"2":{"get_star_ts":"1575929733"}},"12":{"1":{"get_star_ts":"1576283040"}},"6":{"2":{"get_star_ts":"1575754489"},"1":{"get_star_ts":"1575752250"}},"11":{"2":{"get_star_ts":"1576107901"},"1":{"get_star_ts":"1576103479"}},"10":{"1":{"get_star_ts":"1576020165"}},"1":{"2":{"get_star_ts":"1575302176"},"1":{"get_star_ts":"1575301371"}},"14":{"2":{"get_star_ts":"1576540088"},"1":{"get_star_ts":"1576537816"}},"16":{"1":{"get_star_ts":"1576709236"}},"2":{"2":{"get_star_ts":"1575310730"},"1":{"get_star_ts":"1575306756"}},"4":{"1":{"get_star_ts":"1575493184"},"2":{"get_star_ts":"1575493735"}},"13":{"2":{"get_star_ts":"1576255252"},"1":{"get_star_ts":"1576238198"}}}},"378824":{"global_score":0,"last_star_ts":"1575754603","local_score":132,"completion_day_level":{"3":{"2":{"get_star_ts":"1575513380"},"1":{"get_star_ts":"1575473331"}},"1":{"2":{"get_star_ts":"1575213173"},"1":{"get_star_ts":"1575212143"}},"7":{"1":{"get_star_ts":"1575754603"}},"4":{"1":{"get_star_ts":"1575516887"},"2":{"get_star_ts":"1575560362"}},"6":{"2":{"get_star_ts":"1575654847"},"1":{"get_star_ts":"1575650078"}},"5":{"2":{"get_star_ts":"1575567765"},"1":{"get_star_ts":"1575565643"}},"2":{"2":{"get_star_ts":"1575299858"},"1":{"get_star_ts":"1575297312"}}},"id":"378824","stars":13,"name":"Zachary Burkett"},"983788":{"last_star_ts":"1606752552","global_score":0,"id":"983788","stars":2,"name":"jolheiser","completion_day_level":{"1":{"1":{"get_star_ts":"1606752438"},"2":{"get_star_ts":"1606752552"}}},"local_score":14},"982728":{"completion_day_level":{},"local_score":0,"name":"CDFN","stars":0,"id":"982728","global_score":0,"last_star_ts":0},"919691":{"global_score":0,"last_star_ts":"1606256209","name":"Karitham","stars":8,"id":"919691","local_score":64,"completion_day_level":{"2":{"2":{"get_star_ts":"1590996247"},"1":{"get_star_ts":"1590917797"}},"3":{"1":{"get_star_ts":"1606157466"},"2":{"get_star_ts":"1606170612"}},"1":{"2":{"get_star_ts":"1590605944"},"1":{"get_star_ts":"1590600684"}},"4":{"2":{"get_star_ts":"1606256209"},"1":{"get_star_ts":"1606244508"}}}},"986153":{"last_star_ts":0,"global_score":0,"name":"Evan do Carmo","stars":0,"id":"986153","completion_day_level":{},"local_score":0},"982670":{"last_star_ts":0,"global_score":0,"stars":0,"name":"Michael Epps","id":"982670","local_score":0,"completion_day_level":{}},"66915":{"global_score":0,"last_star_ts":"1577710918","completion_day_level":{"15":{"1":{"get_star_ts":"1577368947"},"2":{"get_star_ts":"1577371668"}},"7":{"2":{"get_star_ts":"1575725997"},"1":{"get_star_ts":"1575721035"}},"22":{"1":{"get_star_ts":"1577710918"}},"3":{"2":{"get_star_ts":"1575414585"},"1":{"get_star_ts":"1575412567"}},"19":{"1":{"get_star_ts":"1577390066"},"2":{"get_star_ts":"1577397269"}},"8":{"1":{"get_star_ts":"1575807310"},"2":{"get_star_ts":"1575809959"}},"17":{"2":{"get_star_ts":"1577386073"},"1":{"get_star_ts":"1577374316"}},"6":{"2":{"get_star_ts":"1575767788"},"1":{"get_star_ts":"1575762619"}},"11":{"2":{"get_star_ts":"1576092177"},"1":{"get_star_ts":"1576090735"}},"9":{"2":{"get_star_ts":"1575924802"},"1":{"get_star_ts":"1575924616"}},"5":{"1":{"get_star_ts":"1575666367"},"2":{"get_star_ts":"1575671155"}},"21":{"2":{"get_star_ts":"1577461855"},"1":{"get_star_ts":"1577461243"}},"12":{"2":{"get_star_ts":"1576284774"},"1":{"get_star_ts":"1576205051"}},"14":{"1":{"get_star_ts":"1576513938"},"2":{"get_star_ts":"1576515030"}},"1":{"1":{"get_star_ts":"1575208254"},"2":{"get_star_ts":"1575209647"}},"24":{"1":{"get_star_ts":"1577489861"}},"10":{"2":{"get_star_ts":"1576021569"},"1":{"get_star_ts":"1576012468"}},"4":{"1":{"get_star_ts":"1575469853"},"2":{"get_star_ts":"1575471763"}},"13":{"1":{"get_star_ts":"1576288931"},"2":{"get_star_ts":"1576289822"}},"2":{"2":{"get_star_ts":"1575325493"},"1":{"get_star_ts":"1575323655"}},"16":{"2":{"get_star_ts":"1577138776"},"1":{"get_star_ts":"1577134053"}},"23":{"1":{"get_star_ts":"1577469813"},"2":{"get_star_ts":"1577472724"}}},"local_score":441,"name":"iCiaran","stars":42,"id":"66915"},"983059":{"last_star_ts":0,"global_score":0,"completion_day_level":{},"local_score":0,"id":"983059","stars":0,"name":"Terra Brown"},"210495":{"global_score":0,"last_star_ts":0,"local_score":0,"completion_day_level":{},"name":"Strum355","stars":0,"id":"210495"},"982676":{"global_score":0,"last_star_ts":0,"completion_day_level":{},"local_score":0,"name":"chanbakjsd","stars":0,"id":"982676"}}}`)
+
+	stats := Stats{}
+	err := json.Unmarshal(input, &stats)
+	if err != nil {
+		t.Fatalf("unmarshal failed: %s", err)
+	}
+
+	swiltink, exists := stats.Members["424369"]
+	assert.True(t, exists, "member does not exist in map")
+
+	assert.Equal(t, 0, swiltink.GlobalScore)
+	assert.Equal(t, 306, swiltink.LocalScore)
+	assert.Equal(t, 30, swiltink.Stars)
+	assert.Equal(t, CompletionTime(time.Unix(1578082485, 0)), swiltink.LastStarTime)
+	assert.Equal(t, CompletionTime(time.Unix(1578082485,0)), swiltink.CompletionDayLevel["17"].PartOne.Time)
+	assert.Equal(t, CompletionTime(time.Time{}), swiltink.CompletionDayLevel["17"].PartTwo.Time)
+}
